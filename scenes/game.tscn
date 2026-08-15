@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cradyr4imf0tk"]
+
+[ext_resource type="Script" uid="uid://d0jinjwheg73p" path="res://scripts/game.gd" id="1_5dhsp"]
+[ext_resource type="PackedScene" uid="uid://dl24p08af224r" path="res://scenes/player.tscn" id="2_nni6g"]
+[ext_resource type="Environment" uid="uid://brc6bsfocnk1h" path="res://assets/game_enviroment.tres" id="2_oaiob"]
+[ext_resource type="AudioStream" uid="uid://cc0nd4rgeqi8h" path="res://assets/audio/die.wav" id="4_7r2ba"]
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_5dhsp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.385812, 0.318039, -0.0154258, 0.656392, 0.754262, -0.499762, 0.648304, -0.574404, 0, 35.9053, 0)
+light_energy = 0.7
+shadow_enabled = true
+shadow_opacity = 0.9
+shadow_blur = 0.0
+directional_shadow_mode = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_oaiob")
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_nni6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
+
+[node name="die" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7r2ba")
+
+[connection signal="break_block" from="Player" to="." method="_on_player_break_block"]
+[connection signal="die" from="Player" to="." method="_on_player_die"]
+[connection signal="place_block" from="Player" to="." method="_on_player_place_block"]

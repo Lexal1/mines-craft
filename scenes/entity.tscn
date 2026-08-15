@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://ci2748medac7l"]
+
+[node name="Entity" type="Node3D"]
