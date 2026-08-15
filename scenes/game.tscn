@@ -1,14 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://cradyr4imf0tk"]
+[gd_scene format=3 uid="uid://cradyr4imf0tk"]
 
 [ext_resource type="Script" uid="uid://d0jinjwheg73p" path="res://scripts/game.gd" id="1_5dhsp"]
 [ext_resource type="PackedScene" uid="uid://dl24p08af224r" path="res://scenes/player.tscn" id="2_nni6g"]
 [ext_resource type="Environment" uid="uid://brc6bsfocnk1h" path="res://assets/game_enviroment.tres" id="2_oaiob"]
 [ext_resource type="AudioStream" uid="uid://cc0nd4rgeqi8h" path="res://assets/audio/die.wav" id="4_7r2ba"]
+[ext_resource type="Shader" uid="uid://d3cfhejlrm2dw" path="res://scripts/postprocessing.gdshader" id="5_iywne"]
 
-[node name="Game" type="Node3D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
+shader = ExtResource("5_iywne")
+
+[node name="Game" type="Node3D" unique_id=1003255847]
 script = ExtResource("1_5dhsp")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="Shader(s)" type="CanvasLayer" parent="." unique_id=1901781800]
+
+[node name="ColorRect" type="ColorRect" parent="Shader(s)" unique_id=1620100075]
+material = SubResource("ShaderMaterial_g4v7s")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1231611073]
 transform = Transform3D(-0.866025, -0.385812, 0.318039, -0.0154258, 0.656392, 0.754262, -0.499762, 0.648304, -0.574404, 0, 35.9053, 0)
 light_energy = 0.7
 shadow_enabled = true
@@ -16,15 +31,15 @@ shadow_opacity = 0.9
 shadow_blur = 0.0
 directional_shadow_mode = 0
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1793283456]
 environment = ExtResource("2_oaiob")
 
-[node name="World" type="Node3D" parent="."]
+[node name="World" type="Node3D" parent="." unique_id=421522664]
 
-[node name="Player" parent="." instance=ExtResource("2_nni6g")]
+[node name="Player" parent="." unique_id=825439093 instance=ExtResource("2_nni6g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
 
-[node name="die" type="AudioStreamPlayer" parent="."]
+[node name="die" type="AudioStreamPlayer" parent="." unique_id=1165512681]
 stream = ExtResource("4_7r2ba")
 
 [connection signal="break_block" from="Player" to="." method="_on_player_break_block"]
