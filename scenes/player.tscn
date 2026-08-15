@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dl24p08af224r"]
+[gd_scene format=3 uid="uid://dl24p08af224r"]
 
 [ext_resource type="Texture2D" uid="uid://pe3ttkphaibb" path="res://assets/player.png" id="1_7cd0c"]
 [ext_resource type="Script" uid="uid://3mjoqo43yobe" path="res://scripts/player.gd" id="1_wh74w"]
@@ -15,28 +15,27 @@ albedo_color = Color(0.775945, 0.403927, 9.62615e-07, 0.223529)
 material = SubResource("StandardMaterial3D_i1h18")
 size = Vector3(1.01, 1.01, 1.01)
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" unique_id=1501628855]
 script = ExtResource("1_wh74w")
 
-[node name="Sprite" type="Sprite3D" parent="."]
+[node name="Sprite" type="Sprite3D" parent="." unique_id=1132956881]
 pixel_size = 0.05
 billboard = 2
 texture_filter = 0
 texture = ExtResource("1_7cd0c")
 
-[node name="Collision" type="CollisionShape3D" parent="."]
+[node name="Collision" type="CollisionShape3D" parent="." unique_id=339749166]
 shape = SubResource("CapsuleShape3D_f56tk")
 
-[node name="Camera" type="Camera3D" parent="."]
+[node name="Camera" type="Camera3D" parent="." unique_id=119519106]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="RayCast" type="RayCast3D" parent="Camera"]
+[node name="RayCast" type="RayCast3D" parent="Camera" unique_id=1792143817]
 target_position = Vector3(0, 0, -5)
 
-[node name="blok" type="AudioStreamPlayer3D" parent="Camera/RayCast"]
+[node name="blok" type="AudioStreamPlayer3D" parent="Camera/RayCast" unique_id=1385764948]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.78793)
 
-[node name="BlockOutline" type="MeshInstance3D" parent="."]
+[node name="BlockOutline" type="MeshInstance3D" parent="." unique_id=426108941]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-visible = false
 mesh = SubResource("BoxMesh_mnnn6")

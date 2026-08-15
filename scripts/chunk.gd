@@ -19,6 +19,8 @@ const SOUTH = [2,0,1,3]
 const EAST = [3,1,5,7]
 const WEST = [6,4,0,2]
 
+@export var shaderMaterial: ShaderMaterial
+
 var blocks = []
 
 var st = SurfaceTool.new()
@@ -75,20 +77,20 @@ func update():
 	mesh_instance = MeshInstance3D.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 	st.set_smooth_group(-1)
-	
+
 	for x in Global.CHUNK_SIZE.x:
 		for y in Global.CHUNK_SIZE.y:
 			for z in Global.CHUNK_SIZE.z:
 				create_block(x,y,z)
-	
+
 	st.generate_normals(false)
-	st.set_material(material)
+	st.set_material(shaderMaterial)
 	mesh = st.commit()
 	mesh_instance.set_mesh(mesh)
-	
+
 	self.call_deferred("add_child",mesh_instance)
 	mesh_instance.create_trimesh_collision()
-	
+
 	self.visible = true
 
 func check_transparency(x,y,z):

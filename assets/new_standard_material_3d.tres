@@ -1,4 +1,4 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dquhqwobluafx"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dquhqwobluafx"]
 
 [ext_resource type="Texture2D" uid="uid://2htkletl4hgi" path="res://assets/atlas.tres" id="1_31xpf"]
 
