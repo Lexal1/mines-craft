@@ -1,8 +1,8 @@
 extends Node
 
-const SYNTH_1 = preload("res://assets/audio/synth1.wav")
-const SYNTH_2 = preload("res://assets/audio/synth2.wav")
-const SYNTH_3 = preload("res://assets/audio/synth3.wav")
+const SYNTH_1 = preload("res://assets/audio/synth1.ogg")
+const SYNTH_2 = preload("res://assets/audio/synth2.ogg")
+const SYNTH_3 = preload("res://assets/audio/synth3.ogg")
 
 @onready var music_timer: Timer = $Music/Timer
 @onready var music: AudioStreamPlayer = $Music

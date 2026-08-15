@@ -1,16 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccp68jltp664l"]
+[gd_scene format=3 uid="uid://ccp68jltp664l"]
 
 [ext_resource type="Script" uid="uid://l42d5kskepyc" path="res://scripts/Global.gd" id="1_6kgfw"]
-[ext_resource type="AudioStream" uid="uid://cedelv3i5ab3y" path="res://assets/audio/synth1.wav" id="2_stroq"]
 
-[node name="Global" type="Node"]
+[node name="Global" type="Node" unique_id=1590814855]
 script = ExtResource("1_6kgfw")
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_stroq")
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=728941297]
 pitch_scale = 0.99
 
-[node name="Timer" type="Timer" parent="Music"]
+[node name="Timer" type="Timer" parent="Music" unique_id=1264478801]
 wait_time = 3.0
 one_shot = true
 autostart = true
