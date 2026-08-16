@@ -1,9 +1,28 @@
 [gd_scene format=3 uid="uid://de37u445imeh7"]
 
-[node name="HUD" type="Control"]
+[ext_resource type="Script" uid="uid://dwqrgjgu48wwx" path="res://scenes/crosshair.gd" id="1_ahhtf"]
+
+[node name="HUD" type="Control" unique_id=1430509112]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=996923894]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="MarginContainer" unique_id=447482288]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Crosshair" type="Line2D" parent="MarginContainer/Control" unique_id=713079517]
+width = 1.0
+script = ExtResource("1_ahhtf")
