@@ -28,7 +28,7 @@ var st = SurfaceTool.new()
 var mesh : Mesh = null
 var mesh_instance : MeshInstance3D = null
 
-var material = preload("res://assets/new_standard_material_3d.tres")
+var material = preload("res://assets/resources/new_standard_material_3d.tres")
 
 var noise = FastNoiseLite.new()
 
