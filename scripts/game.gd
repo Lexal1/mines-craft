@@ -62,7 +62,7 @@ func will_collide_with_player(pos: Vector3):
 	if result.size() > 0:
 		for r in result:
 			#print("Colliding with: ", r.collider.name)
-			if r.collider == $Player:
+			if r.collider == player:
 				return true
 	return false
 
