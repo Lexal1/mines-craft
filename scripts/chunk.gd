@@ -21,6 +21,7 @@ const WEST = [6,4,0,2]
 
 @export var shaderMaterial: ShaderMaterial
 
+var blocksMutex: Mutex = Mutex.new()
 var blocks = []
 
 var st = SurfaceTool.new()
@@ -40,10 +41,18 @@ var chunk_position = Vector2.ZERO:
 		self.visible = false
 
 func _ready():
-	generate()
-	update()
+	#generate()
+	#update()
+	generate_and_update()
 
-func generate():
+func generate_and_update():
+	return WorkerThreadPool.add_task(_generate_and_update)
+	
+func _generate_and_update():
+	_generate()
+	update()
+func _generate():
+	blocksMutex.lock()
 	blocks = []
 	blocks.resize(Global.CHUNK_SIZE.x)
 	for i in range(0, Global.CHUNK_SIZE.x):
@@ -67,7 +76,7 @@ func generate():
 					block = Blocks.TURF
 				
 				blocks[i][j][k] = block
-
+	blocksMutex.unlock()
 func update():
 	## unloads chunk if it exists
 	if mesh != null:
@@ -77,21 +86,21 @@ func update():
 	mesh_instance = MeshInstance3D.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 	st.set_smooth_group(-1)
-
+	blocksMutex.lock()
 	for x in Global.CHUNK_SIZE.x:
 		for y in Global.CHUNK_SIZE.y:
 			for z in Global.CHUNK_SIZE.z:
 				create_block(x,y,z)
-
+	blocksMutex.unlock()
 	st.generate_normals(false)
 	st.set_material(shaderMaterial)
 	mesh = st.commit()
 	mesh_instance.set_mesh(mesh)
-
 	self.call_deferred("add_child",mesh_instance)
-	mesh_instance.create_trimesh_collision()
-
-	self.visible = true
+	#mesh_instance.create_trimesh_collision()
+	mesh_instance.create_trimesh_collision.call_deferred()
+	#self.visible = true
+	self.call_deferred("set_visible", true)
 
 func check_transparency(x,y,z):
 	if x >= 0 and x < Global.CHUNK_SIZE.x and \
@@ -101,6 +110,7 @@ func check_transparency(x,y,z):
 	return true
 
 func create_block(x,y,z):
+	#print("creating block %s %s %s" % [x,y,z])
 	var block = blocks[x][y][z]
 	if block == Blocks.AIR:
 		return

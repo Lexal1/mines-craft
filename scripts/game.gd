@@ -3,6 +3,7 @@ extends Node3D
 var chunk_scene = preload("res://scenes/chunk.tscn")
 
 @export var render_distance = 5 ## Determines how many chunks to load around the player, in a radius.
+@export var blockShape: Shape3D
 
 @onready var world: Node3D = $World
 @onready var player: CharacterBody3D = $Player
@@ -22,6 +23,7 @@ func _process(delta: float) -> void:
 	self.call_deferred("chunk_processing")
 
 func chunk_processing():
+	var tasks = []
 	for c in world.get_children():
 		var cx = c.chunk_position.x
 		var cz = c.chunk_position.y
@@ -34,17 +36,37 @@ func chunk_processing():
 		
 		if (newx != cx or newz != cz):
 			c.chunk_position = Vector2(int(newx),int(newz))
-			c.generate()
-			c.update()
-		
-
+			#c.generate()
+			#c.update()
+			tasks.push_back(c.generate_and_update())
+			#WorkerThreadPool.wait_for_task_completion()
+	if len(tasks) > 0:
+		call_deferred("_wait_for_tasks", tasks)
+func _wait_for_tasks(tasks: Array):
+	for task in tasks:
+		WorkerThreadPool.wait_for_task_completion(task)
 func get_chunk(pos):
 	for c in world.get_children():
 		if c.chunk_position == pos:
 			return c
 	return null
 
-func _on_player_place_block(pos: Variant, t: Variant) -> void:
+func will_collide_with_player(pos: Vector3):
+	var space_state = get_world_3d().direct_space_state
+	var parameters = PhysicsShapeQueryParameters3D.new()
+
+	parameters.shape = blockShape
+	parameters.transform = Transform3D(Basis(), pos)
+
+	var result = space_state.intersect_shape(parameters)
+	if result.size() > 0:
+		for r in result:
+			#print("Colliding with: ", r.collider.name)
+			if r.collider == $Player:
+				return true
+	return false
+
+func _on_player_place_block(pos: Vector3, t: Variant) -> void:
 	var cx = int(floor(pos.x / Global.CHUNK_SIZE.x))
 	var cz = int(floor(pos.z / Global.CHUNK_SIZE.z))
 	
@@ -54,6 +76,8 @@ func _on_player_place_block(pos: Variant, t: Variant) -> void:
 	
 	var c = get_chunk(Vector2(cx,cz))
 	if c != null:
+		if will_collide_with_player(pos.floor()):
+			return
 		c.blocks[bx][by][bz] = t
 		c.update()
 
