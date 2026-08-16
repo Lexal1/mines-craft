@@ -11,6 +11,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
 shader = ExtResource("5_iywne")
+shader_parameter/viewport_size = Vector2(640, 480)
+shader_parameter/virtual_resolution = Vector2(320, 240)
 
 [node name="Game" type="Node3D" unique_id=1003255847]
 script = ExtResource("1_5dhsp")
