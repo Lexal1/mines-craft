@@ -76,7 +76,7 @@ func _on_player_place_block(pos: Vector3, t: Variant) -> void:
 	
 	var c = get_chunk(Vector2(cx,cz))
 	if c != null:
-		if will_collide_with_player(pos.floor()):
+		if will_collide_with_player(pos) and t != Blocks.AIR:
 			return
 		c.blocks[bx][by][bz] = t
 		c.update()
