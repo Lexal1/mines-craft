@@ -42,6 +42,7 @@ func chunk_processing():
 			#WorkerThreadPool.wait_for_task_completion()
 	#if len(tasks) > 0:
 	#	call_deferred("_wait_for_tasks", tasks)
+
 func _wait_for_tasks(tasks: Array):
 	for task in tasks:
 		WorkerThreadPool.wait_for_task_completion(task)
@@ -83,7 +84,6 @@ func _on_player_place_block(pos: Vector3, t: Variant) -> void:
 
 func _on_player_break_block(pos: Variant) -> void:
 	_on_player_place_block(pos, Blocks.AIR)
-
 
 func _on_player_die() -> void:
 	Global.music.stream_paused = true

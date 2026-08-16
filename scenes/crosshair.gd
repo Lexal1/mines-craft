@@ -1,10 +1,10 @@
 extends Line2D
 # what the fuck. google ai code that works. im going to hell for this
-@export var max_points: int = 100      # Total horizontal resolution
-@export var width_pixels: float = 15.0 # Total width of the monitor
-@export var scroll_speed: float = 1.5  # Speed of the wave movement
-@export var pulse_rate: float = 2.5    # Beats per second (Hz)
-@export var amplitude: float = 9.0     # Height of the main QRS spike
+@export var max_points: int = 100
+@export var width_pixels: float = 15.0
+@export var scroll_speed: float = 1.5
+@export var pulse_rate: float = 2.5    # bpm(Hz)
+@export var amplitude: float = 9.0     # Height of the main spike
 
 var time_passed: float = 0.0
 
