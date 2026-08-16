@@ -24,5 +24,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Crosshair" type="Line2D" parent="MarginContainer/Control" unique_id=713079517]
+position = Vector2(-7, 0)
 width = 1.0
 script = ExtResource("1_ahhtf")
