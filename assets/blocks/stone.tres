@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Block" format=3 uid="uid://c786pnsgvrt6f"]
+
+[ext_resource type="Script" uid="uid://c2j5n5wf30urt" path="res://scripts/BlockAtlasPosition.gd" id="1_nyxsy"]
+[ext_resource type="Script" uid="uid://bvocj4r036lxu" path="res://scripts/Block.gd" id="1_ypyq1"]
+
+[sub_resource type="Resource" id="Resource_ypyq1"]
+script = ExtResource("1_nyxsy")
+TOP = Vector2(3, 0)
+BOTTOM = Vector2(3, 0)
+NORTH = Vector2(3, 0)
+SOUTH = Vector2(3, 0)
+WEST = Vector2(3, 0)
+EAST = Vector2(3, 0)
+metadata/_custom_type_script = "uid://c2j5n5wf30urt"
+
+[resource]
+script = ExtResource("1_ypyq1")
+id = &"stone"
+atlas_position = SubResource("Resource_ypyq1")
+metadata/_custom_type_script = "uid://bvocj4r036lxu"

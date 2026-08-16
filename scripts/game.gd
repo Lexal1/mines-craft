@@ -76,13 +76,13 @@ func _on_player_place_block(pos: Vector3, t: Variant) -> void:
 	
 	var c = get_chunk(Vector2(cx,cz))
 	if c != null:
-		if will_collide_with_player(pos) and t != Blocks.AIR:
+		if will_collide_with_player(pos) and t != BlockRegistry.get_idx_of(&"air"):
 			return
 		c.blocks[bx][by][bz] = t
 		c.update()
 
 func _on_player_break_block(pos: Variant) -> void:
-	_on_player_place_block(pos, Blocks.AIR)
+	_on_player_place_block(pos, BlockRegistry.get_idx_of(&"air"))
 
 
 func _on_player_die() -> void:

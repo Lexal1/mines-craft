@@ -87,7 +87,7 @@ func _physics_process(delta: float) -> void:
 			blok.play()
 		if Input.is_action_just_pressed("2"):
 			blok.stream = PLACESFX
-			emit_signal("place_block", pos +norm, Blocks.PLATE)
+			emit_signal("place_block", pos +norm, BlockRegistry.get_idx_of(&"plate"))
 			blok.play()
 	#else:
 		#block_outline.visible = false

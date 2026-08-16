@@ -66,15 +66,17 @@ func _generate():
 				
 				var height = int((noise.get_noise_2dv(global_pos) + 1)/ 2 * Global.CHUNK_SIZE.y)
 				
-				var block = Blocks.AIR
+				#var block = Blocks.AIR
+				var block = BlockRegistry.get_idx_of(&"air")
 				
 				if j < height / 2:
-					block = Blocks.STONE
+					block = BlockRegistry.get_idx_of(&"stone")
 				elif j < height:
-					block = Blocks.STONE #DIRT
+					block = BlockRegistry.get_idx_of(&"stone") #DIRT
 				elif j == height:
-					block = Blocks.TURF
-				
+					block = BlockRegistry.get_idx_of(&"turf")
+				if typeof(block) != TYPE_INT:
+					print("unint block: ", block)
 				blocks[i][j][k] = block
 	blocksMutex.unlock()
 func update():
@@ -106,23 +108,30 @@ func check_transparency(x,y,z):
 	if x >= 0 and x < Global.CHUNK_SIZE.x and \
 		y >= 0 and y < Global.CHUNK_SIZE.y and \
 		z >= 0 and z < Global.CHUNK_SIZE.z:
-			return not Blocks.block_types[blocks[x][y][z]][Blocks.SOLID]
+			#return not Blocks.block_types[blocks[x][y][z]][Blocks.SOLID]
+			if typeof(blocks[x][y][z]) != TYPE_INT:
+				print(blocks[x][y][z])
+			return not BlockRegistry.get_by_idx(blocks[x][y][z]).solid
 	return true
 
 func create_block(x,y,z):
 	#print("creating block %s %s %s" % [x,y,z])
 	var block = blocks[x][y][z]
-	if block == Blocks.AIR:
+	#if block == Blocks.AIR:
+	#	return
+	if block == BlockRegistry.get_idx_of(&"air"):
 		return
 	
-	var block_data = Blocks.block_types[block]
+	#var block_data = Blocks.block_types[block]
+	var block_data = BlockRegistry.get_by_idx(block)
+	var atlas_data = block_data.atlas_position
 	
-	if check_transparency(x, y+1, z): create_face(TOP, x,y,z, block_data[Blocks.TOP])
-	if check_transparency(x, y-1, z): create_face(BOTTOM, x,y,z, block_data[Blocks.BOTTOM])
-	if check_transparency(x, y, z+1): create_face(NORTH, x,y,z, block_data[Blocks.NORTH])
-	if check_transparency(x, y, z-1): create_face(SOUTH, x,y,z, block_data[Blocks.SOUTH])
-	if check_transparency(x+1, y, z): create_face(EAST, x,y,z, block_data[Blocks.EAST])
-	if check_transparency(x-1, y, z): create_face(WEST, x,y,z, block_data[Blocks.WEST])
+	if check_transparency(x, y+1, z): create_face(TOP, x,y,z, atlas_data.TOP)
+	if check_transparency(x, y-1, z): create_face(BOTTOM, x,y,z, atlas_data.BOTTOM)
+	if check_transparency(x, y, z+1): create_face(NORTH, x,y,z, atlas_data.NORTH)
+	if check_transparency(x, y, z-1): create_face(SOUTH, x,y,z, atlas_data.SOUTH)
+	if check_transparency(x+1, y, z): create_face(EAST, x,y,z, atlas_data.EAST)
+	if check_transparency(x-1, y, z): create_face(WEST, x,y,z, atlas_data.WEST)
 
 func create_face(i, x,y,z, atlas_offset): #what is this, miitopia?
 	var offset = Vector3(x,y,z)

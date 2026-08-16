@@ -24,6 +24,7 @@ config/icon="res://assets/icon.svg"
 
 Global="*res://scenes/global.tscn"
 Blocks="*res://scripts/Blocks.gd"
+BlockRegistry="*uid://dbf5s4yk08yjw"
 
 [display]
 

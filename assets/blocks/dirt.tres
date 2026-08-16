@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Block" format=3 uid="uid://4dvpyspo5rux"]
+
+[ext_resource type="Script" uid="uid://c2j5n5wf30urt" path="res://scripts/BlockAtlasPosition.gd" id="1_8ratt"]
+[ext_resource type="Script" uid="uid://bvocj4r036lxu" path="res://scripts/Block.gd" id="1_qp6sq"]
+
+[sub_resource type="Resource" id="Resource_8ratt"]
+script = ExtResource("1_8ratt")
+TOP = Vector2(2, 0)
+BOTTOM = Vector2(2, 0)
+NORTH = Vector2(2, 0)
+SOUTH = Vector2(2, 0)
+WEST = Vector2(2, 0)
+EAST = Vector2(2, 0)
+metadata/_custom_type_script = "uid://c2j5n5wf30urt"
+
+[resource]
+script = ExtResource("1_qp6sq")
+id = &"dirt"
+atlas_position = SubResource("Resource_8ratt")
+metadata/_custom_type_script = "uid://bvocj4r036lxu"
