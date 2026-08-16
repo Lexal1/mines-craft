@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 var _blocks: Array[Block] = []
@@ -42,8 +43,8 @@ func get_idx_of(id: StringName) -> int:
 
 
 func _ready():
-	for block in DirAccess.get_files_at("res://assets/blocks/"):
-		var evilBlock = load("res://assets/blocks/" + block) as Block
+	for block in DirAccess.get_files_at("res://assets/resources/blocks/"):
+		var evilBlock = load("res://assets/resources/blocks/" + block) as Block
 		if evilBlock == null:
 			printerr("Failed to load block %s" % block)
 			continue
