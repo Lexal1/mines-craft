@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://g10bjemtmg6s" path="res://scripts/chunk.gd" id="1_16sgi"]
 [ext_resource type="Shader" uid="uid://bnobd3qinwotm" path="res://scripts/models.gdshader" id="2_c3gog"]
-[ext_resource type="Texture2D" uid="uid://2htkletl4hgi" path="res://assets/atlas.tres" id="3_y5xp6"]
+[ext_resource type="Texture2D" uid="uid://2htkletl4hgi" path="res://assets/resources/atlas.tres" id="3_y5xp6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c3gog"]
 render_priority = 0

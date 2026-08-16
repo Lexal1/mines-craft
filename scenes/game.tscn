@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d0jinjwheg73p" path="res://scripts/game.gd" id="1_5dhsp"]
 [ext_resource type="PackedScene" uid="uid://dl24p08af224r" path="res://scenes/player.tscn" id="2_nni6g"]
-[ext_resource type="Environment" uid="uid://brc6bsfocnk1h" path="res://assets/game_enviroment.tres" id="2_oaiob"]
+[ext_resource type="Environment" uid="uid://brc6bsfocnk1h" path="res://assets/resources/game_enviroment.tres" id="2_oaiob"]
 [ext_resource type="AudioStream" uid="uid://cc0nd4rgeqi8h" path="res://assets/audio/die.wav" id="4_7r2ba"]
 [ext_resource type="Shader" uid="uid://d3cfhejlrm2dw" path="res://scripts/postprocessing.gdshader" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://de37u445imeh7" path="res://scenes/hud.tscn" id="6_p57ef"]
