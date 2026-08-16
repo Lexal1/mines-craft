@@ -24,7 +24,6 @@ config/icon="res://assets/icon.svg"
 
 Global="*res://scenes/global.tscn"
 Blocks="*res://scripts/Blocks.gd"
-ChunkGenerator="*uid://dtov1c2hqfty4"
 
 [display]
 
