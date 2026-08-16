@@ -5,6 +5,7 @@
 [ext_resource type="Environment" uid="uid://brc6bsfocnk1h" path="res://assets/game_enviroment.tres" id="2_oaiob"]
 [ext_resource type="AudioStream" uid="uid://cc0nd4rgeqi8h" path="res://assets/audio/die.wav" id="4_7r2ba"]
 [ext_resource type="Shader" uid="uid://d3cfhejlrm2dw" path="res://scripts/postprocessing.gdshader" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://de37u445imeh7" path="res://scenes/hud.tscn" id="6_p57ef"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iywne"]
 
@@ -27,8 +28,9 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1231611073]
-transform = Transform3D(-0.866025, -0.385812, 0.318039, -0.0154258, 0.656392, 0.754262, -0.499762, 0.648304, -0.574404, 0, 35.9053, 0)
+transform = Transform3D(0.9089612, -0.41683492, 0.0061856713, 0.28057322, 0.6226651, 0.7304566, -0.30833137, -0.6622212, 0.6829311, 0.0064287186, 35.41587, 0)
 light_energy = 0.7
+light_bake_mode = 1
 shadow_enabled = true
 shadow_opacity = 0.9
 shadow_blur = 0.0
@@ -44,6 +46,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
 
 [node name="die" type="AudioStreamPlayer" parent="." unique_id=1165512681]
 stream = ExtResource("4_7r2ba")
+
+[node name="HUD" parent="." unique_id=1430509112 instance=ExtResource("6_p57ef")]
+z_index = 99
+offset_bottom = 1.5258789e-05
+mouse_filter = 2
 
 [connection signal="break_block" from="Player" to="." method="_on_player_break_block"]
 [connection signal="die" from="Player" to="." method="_on_player_die"]
