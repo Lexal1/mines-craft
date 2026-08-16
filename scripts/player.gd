@@ -82,14 +82,22 @@ func _physics_process(delta: float) -> void:
 		#block_outline.visible = true
 		
 		if Input.is_action_just_pressed("1"):
-			blok.stream = BREAKSFX
+			#blok.stream = BREAKSFX
 			emit_signal("break_block", pos)
-			blok.play()
+			#blok.play()
 		if Input.is_action_just_pressed("2"):
-			blok.stream = PLACESFX
+			#blok.stream = PLACESFX
 			emit_signal("place_block", pos +norm, BlockRegistry.get_idx_of(&"plate"))
-			blok.play()
+			#blok.play()
 	#else:
 		#block_outline.visible = false
 
 	move_and_slide()
+
+func play_break_sfx():
+	blok.stream = BREAKSFX
+	blok.play()
+
+func play_place_sfx():
+	blok.stream = PLACESFX
+	blok.play()

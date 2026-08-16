@@ -81,6 +81,10 @@ func _on_player_place_block(pos: Vector3, t: Variant) -> void:
 			return
 		c.blocks[bx][by][bz] = t
 		c.update()
+		if t == BlockRegistry.get_idx_of(&"air"):
+			player.play_break_sfx()
+		else:
+			player.play_place_sfx()
 
 func _on_player_break_block(pos: Variant) -> void:
 	_on_player_place_block(pos, BlockRegistry.get_idx_of(&"air"))
