@@ -40,8 +40,8 @@ func chunk_processing():
 			#c.update()
 			tasks.push_back(c.generate_and_update())
 			#WorkerThreadPool.wait_for_task_completion()
-	if len(tasks) > 0:
-		call_deferred("_wait_for_tasks", tasks)
+	#if len(tasks) > 0:
+	#	call_deferred("_wait_for_tasks", tasks)
 func _wait_for_tasks(tasks: Array):
 	for task in tasks:
 		WorkerThreadPool.wait_for_task_completion(task)
