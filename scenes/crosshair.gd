@@ -1,10 +1,10 @@
 extends Line2D
-
+# what the fuck. chatgpt code that works. im going to be stoned for this
 @export var max_points: int = 300      # Total horizontal resolution
 @export var width_pixels: float = 15.0 # Total width of the monitor
 @export var scroll_speed: float = 1.5  # Speed of the wave movement
 @export var pulse_rate: float = 2.5    # Beats per second (Hz)
-@export var amplitude: float = 12.0   # Height of the main QRS spike
+@export var amplitude: float = 9.0   # Height of the main QRS spike
 
 var time_passed: float = 0.0
 
