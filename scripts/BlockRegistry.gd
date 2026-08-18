@@ -43,7 +43,8 @@ func get_idx_of(id: StringName) -> int:
 
 
 func _ready():
-	for block in DirAccess.get_files_at("res://assets/resources/blocks/"):
+	for filename in DirAccess.get_files_at("res://assets/resources/blocks/"):
+		var block = filename.replace(".remap", "")
 		var evilBlock = load("res://assets/resources/blocks/" + block) as Block
 		if evilBlock == null:
 			printerr("Failed to load block %s" % block)
